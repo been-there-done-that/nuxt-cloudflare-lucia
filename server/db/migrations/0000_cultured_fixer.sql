@@ -17,5 +17,6 @@ CREATE TABLE `auth_session` (
 --> statement-breakpoint
 CREATE TABLE `auth_user` (
 	`id` text PRIMARY KEY NOT NULL,
-	`email` text NOT NULL
+	`email` text NOT NULL,
+	`username` text not NULL
 );

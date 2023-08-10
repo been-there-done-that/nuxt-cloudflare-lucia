@@ -52,6 +52,7 @@ async function handleLogin() {
       </div>
       <template #footer>
         <div class="flex gap-3 justify-end">
+          <UButton label="Github" variant="outline" to="/api/login/github" />
           <UButton label="Sign up" variant="outline" to="/register" />
           <UButton label="Login" @click="handleLogin" />
         </div>

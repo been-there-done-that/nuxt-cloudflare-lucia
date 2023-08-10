@@ -1,6 +1,7 @@
 import lucia from "lucia-auth";
 import { d1 } from "@lucia-auth/adapter-sqlite";
 import { h3 } from "lucia-auth/middleware";
+import { github, google } from "@lucia-auth/oauth/providers";
 import type { Auth as LAuth, Configuration } from "lucia-auth";
 import { betterSqlite3 } from "@lucia-auth/adapter-sqlite";
 import sqlite from "better-sqlite3";
@@ -41,5 +42,19 @@ export const useAuth = () => {
 
   return _auth;
 };
+
+const runtimeConfig = useRuntimeConfig();
+
+export const githubAuth =(auth=useAuth())=> github(auth, {
+  clientId: runtimeConfig.githubClientId,
+  clientSecret: runtimeConfig.githubClientSecret,
+});
+
+export const googleAuth=(auth=useAuth()) => google(auth, {
+  clientId: runtimeConfig.googleClientId,
+  clientSecret: runtimeConfig.googleClientSecret,
+  redirectUri: "http://localhost:3000/api/login/google/callback",
+});
+
 
 export type Auth = typeof _auth;
