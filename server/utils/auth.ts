@@ -46,14 +46,8 @@ export const useAuth = () => {
 const runtimeConfig = useRuntimeConfig();
 
 export const githubAuth =(auth=useAuth())=> github(auth, {
-  clientId: runtimeConfig.githubClientId,
-  clientSecret: runtimeConfig.githubClientSecret,
-});
-
-export const googleAuth=(auth=useAuth()) => google(auth, {
-  clientId: runtimeConfig.googleClientId,
-  clientSecret: runtimeConfig.googleClientSecret,
-  redirectUri: "http://localhost:3000/api/login/google/callback",
+  clientId: runtimeConfig.GITHUB_CLIENT_ID,
+  clientSecret: runtimeConfig.GITHUB_CLIENT_SECRET,
 });
 
 

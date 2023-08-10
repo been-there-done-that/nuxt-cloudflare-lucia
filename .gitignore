@@ -11,3 +11,5 @@ db.sqlite
 wrangler.toml
 .wrangler
 .idea/
+*.db
+main.db

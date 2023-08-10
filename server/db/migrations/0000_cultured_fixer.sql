@@ -18,5 +18,5 @@ CREATE TABLE `auth_session` (
 CREATE TABLE `auth_user` (
 	`id` text PRIMARY KEY NOT NULL,
 	`email` text NOT NULL,
-	`username` text not NULL
+	`username` text
 );

@@ -20,27 +20,36 @@ export default defineEventHandler(async (event) => {
   //   );
   // }
   // try {
+  console.log({code})
     const { existingUser, githubUser, createUser } =
       await githubAuth().validateCallback(code);
-
+  
+    console.log({existingUser, githubUser, createUser})
     const getUser = async () => {
       if (existingUser) return existingUser;
-      const user = await createUser({
-        attributes: {
-          username: githubUser.login,
-        },
-      });
+      const user = await createUser(
+          {
+            primaryKey: {
+              providerId: "github",
+              providerUserId: githubUser.id,
+            },
+            attributes: {
+              username: githubUser.login,
+              email: `${githubUser.id}@fummy.com`,
+            },
+          })
       return user;
     };
 
     const user = await getUser();
 
-    console.log({ githubUser });
+    console.log({ user });
     const session = await useAuth().createSession(
        user.userId,
     );
+    
     authRequest.setSession(session);
-    return sendRedirect(event, "/");
+    return null;
   // } catch (e) {
   //   if (e instanceof OAuthRequestError) {
   //     // invalid code

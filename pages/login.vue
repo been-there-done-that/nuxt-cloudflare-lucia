@@ -2,6 +2,7 @@
 const { data } = await useFetch("/api/user");
 if (!data.value) throw createError("Failed to fetch data");
 const user = data.value.user;
+console.log({data})
 if (user) {
   await navigateTo("/");
 }
@@ -52,7 +53,7 @@ async function handleLogin() {
       </div>
       <template #footer>
         <div class="flex gap-3 justify-end">
-          <UButton label="Github" variant="outline" to="/api/login/github" />
+            <a href="/api/login/github" >Github</a>
           <UButton label="Sign up" variant="outline" to="/register" />
           <UButton label="Login" @click="handleLogin" />
         </div>
