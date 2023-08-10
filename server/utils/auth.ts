@@ -27,7 +27,7 @@ export const useAuth = () => {
     }
 
     _auth = lucia({
-      adapter: _adapter,
+      adapter: _adapter ?? d1(process.env.DB),
       env: process.dev ? "DEV" : "PROD",
       middleware: h3(),
       transformDatabaseUser: (userData) => {

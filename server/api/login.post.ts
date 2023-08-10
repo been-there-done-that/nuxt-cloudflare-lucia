@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
     // database connection error
     console.log(error);
     return {
-      error: "An unknown error occurred",
+      error,
     };
   }
 });
