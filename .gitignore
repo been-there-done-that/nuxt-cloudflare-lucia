@@ -10,3 +10,4 @@ dist
 db.sqlite
 wrangler.toml
 .wrangler
+.idea/

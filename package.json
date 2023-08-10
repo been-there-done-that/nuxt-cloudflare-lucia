@@ -21,5 +21,8 @@
     "nuxt": "^3.5.1",
     "wrangler": "^3.0.1",
     "zod": "^3.21.4"
+  },
+  "dependencies": {
+    "@lucia-auth/oauth": "^2.1.1"
   }
 }

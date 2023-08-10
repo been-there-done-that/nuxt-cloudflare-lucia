@@ -8,6 +8,8 @@ import sqlite from "better-sqlite3";
 
 let _auth: LAuth<Configuration> | null = null;
 
+let _adapter = null;
+
 const mapping = {
   user: "user",
   key: "user_key",
@@ -17,8 +19,6 @@ const mapping = {
 export const useAuth = () => {
   if (!_auth) {
     // we will do this calculations internally and decide which database to pick.
-
-    let _adapter = null;
 
     if (process.dev) {
       const db = sqlite("main.db");

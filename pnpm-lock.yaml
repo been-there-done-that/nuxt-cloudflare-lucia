@@ -1,5 +1,14 @@
 lockfileVersion: '6.0'
 
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  '@lucia-auth/oauth':
+    specifier: ^2.1.1
+    version: 2.1.1(lucia@2.2.0)
+
 devDependencies:
   '@lucia-auth/adapter-sqlite':
     specifier: ^1.1.1
@@ -1054,6 +1063,14 @@ packages:
     dependencies:
       lucia-auth: 1.7.0
     dev: true
+
+  /@lucia-auth/oauth@2.1.1(lucia@2.2.0):
+    resolution: {integrity: sha512-spgYssLCpUzfNuCJNKpZuOrU31SlpXMIvLpBGshotYfKETV3/ubiIUPGK6woPPN7Fhh0rNUgrTGvJ7cfM9DQ5w==}
+    peerDependencies:
+      lucia: ^2.0.0
+    dependencies:
+      lucia: 2.2.0
+    dev: false
 
   /@mapbox/node-pre-gyp@1.0.10:
     resolution: {integrity: sha512-4ySo4CjzStuprMwk35H5pPbkymjv1SF3jGLj6rAHp/xT/RF7TL7bd9CTm1xDY49K2qF7jmR/g7k+SkLETP6opA==}
@@ -4662,6 +4679,7 @@ packages:
   /iconv-lite@0.6.3:
     resolution: {integrity: sha512-4fCk79wshMdzMp2rH06qWrJE4iolqLhCUH+OiuIgU++RB0+94NlDL81atO7GX55uUKueo0txHNtvEyI6D7WdMw==}
     engines: {node: '>=0.10.0'}
+    requiresBuild: true
     dependencies:
       safer-buffer: 2.1.2
     dev: true
@@ -5349,6 +5367,10 @@ packages:
   /lucia-auth@1.7.0:
     resolution: {integrity: sha512-JisZE50dlvVdX726TSxUH0uoI/bwBrgSjO/+Ts/Yrk7TseKtcK8ezDNCAYUCI1XK3PHm37jgobklELpxeAmYLw==}
     dev: true
+
+  /lucia@2.2.0:
+    resolution: {integrity: sha512-bCKSbWGpUQl+YbWaIy4t9eqqZQwKa5XKTBMTAjhAWwg9rEgPWu6L7vH55SueRsvB+2XNa2NA71ASdBUyS2fwLA==}
+    dev: false
 
   /magic-string-ast@0.1.2:
     resolution: {integrity: sha512-P53AZrzq7hclCU6HWj88xNZHmP15DKjMmK/vBytO1qnpYP3ul4IEZlyCE0aU3JRnmgWmZPmoTKj4Bls7v0pMyA==}
