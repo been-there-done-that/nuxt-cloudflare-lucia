@@ -1,15 +1,16 @@
 export default defineEventHandler(async (event) => {
   const authRequest = useAuth().handleRequest(event);
-  const { session } = await authRequest.validateUser();
-
+  // check if user is authenticated
+  const session = await authRequest.validate();
   if (!session) {
     throw createError({
+      message: "Not authenticated",
       statusCode: 401,
-      statusMessage: "Unauthorized",
     });
   }
-
-  await useAuth().invalidateSession(session.sessionId); // invalidate current session
-  authRequest.setSession(null); // remove session cookie
-  return null;
+  // make sure to invalidate the current session!
+  await useAuth().invalidateSession(session.sessionId);
+  // delete session cookie
+  authRequest.setSession(null);
+  return sendRedirect(event, "/login");
 });

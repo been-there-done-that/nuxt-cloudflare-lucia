@@ -7,6 +7,5 @@ export const useDb = () => {
   if (!_db) {
     _db = drizzle(process.env.DB);
   }
-
   return _db;
 };

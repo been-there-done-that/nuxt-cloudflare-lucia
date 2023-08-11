@@ -12,6 +12,8 @@ export default defineEventHandler(async (event) => {
     const key = await useAuth().useKey("email", email, password);
     const session = await useAuth().createSession(key.userId);
     authRequest.setSession(session);
+    const us = await authRequest.validateUser()
+    console.log({us})
     return null;
   } catch (error) {
     if (

@@ -1,15 +1,19 @@
 import { OAuthRequestError } from "@lucia-auth/oauth";
 
 export default defineEventHandler(async (event) => {
-  const authRequest = useAuth().handleRequest(event);
-  const sessions = await authRequest.validate();
-  if (sessions) {
-    return sendRedirect(event, "/");
-  }
-  const storedState = getCookie(event, "oauth_state");
+  // const authRequest = useAuth().handleRequest(event);
+  // const sessions = await authRequest.validate();
+  // if (sessions) {
+  //   return sendRedirect(event, "/");
+  // }
+  //
+  //
+  
+  const storedState = getCookie(event, "auth_session");
   const query = getQuery(event);
   const state = query.state?.toString();
   const code = query.code?.toString();
+  const auth = useAuth()
   // validate state
   // if (!storedState || !state || storedState !== state || !code) {
   //   return sendError(
@@ -20,11 +24,9 @@ export default defineEventHandler(async (event) => {
   //   );
   // }
   // try {
-  console.log({code})
     const { existingUser, githubUser, createUser } =
-      await githubAuth().validateCallback(code);
+      await githubAuth(auth).validateCallback(code);
   
-    console.log({existingUser, githubUser, createUser})
     const getUser = async () => {
       if (existingUser) return existingUser;
       const user = await createUser(
@@ -42,14 +44,12 @@ export default defineEventHandler(async (event) => {
     };
 
     const user = await getUser();
-
-    console.log({ user });
-    const session = await useAuth().createSession(
-       user.userId,
-    );
-    
-    authRequest.setSession(session);
-    return null;
+  const authRequest = useAuth().handleRequest(event);
+  const session = await useAuth().createSession(user.userId);
+  authRequest.setSession(session);
+  const us = await authRequest.validateUser()
+  return sendRedirect(event, '/');
+  
   // } catch (e) {
   //   if (e instanceof OAuthRequestError) {
   //     // invalid code

@@ -1,7 +1,7 @@
 import lucia from "lucia-auth";
 import { d1 } from "@lucia-auth/adapter-sqlite";
 import { h3 } from "lucia-auth/middleware";
-import { github, google } from "@lucia-auth/oauth/providers";
+import { github } from "@lucia-auth/oauth/providers";
 import type { Auth as LAuth, Configuration } from "lucia-auth";
 import { betterSqlite3 } from "@lucia-auth/adapter-sqlite";
 import sqlite from "better-sqlite3";

@@ -2,7 +2,7 @@
 const { data } = await useFetch("/api/user");
 if (!data.value) throw createError("Failed to fetch data");
 const user = data.value.user;
-console.log({data})
+console.log({dataHomePage: data.value?.user})
 if (user) {
   await navigateTo("/");
 }
