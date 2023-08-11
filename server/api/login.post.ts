@@ -2,15 +2,14 @@ import { useValidatedBody, z } from "h3-zod";
 import { LuciaError } from "lucia-auth";
 
 export default defineEventHandler(async (event) => {
-  // const { email, password } = await useValidatedBody(event, {
-  //   email: z.string().email(),
-  //   password: z.string().min(8).max(128),
-  // });
+  const { email, password } = await useValidatedBody(event, {
+    email: z.string().email(),
+    password: z.string().min(8).max(128),
+  });
 
-  
   try {
     const authRequest = useAuth().handleRequest(event);
-    const key = await useAuth().useKey("email", `email-${Math.floor(Math.random())}\@admin.com`, 'somerandompassword');
+    const key = await useAuth().useKey("email", email, password);
     const session = await useAuth().createSession(key.userId);
     authRequest.setSession(session);
     const us = await authRequest.validateUser()

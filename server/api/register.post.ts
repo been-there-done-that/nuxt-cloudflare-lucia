@@ -1,18 +1,22 @@
 import { useValidatedBody, z } from "h3-zod";
 import { LuciaError } from "lucia-auth";
+import {password} from "iron-webcrypto";
 
 export default defineEventHandler(async (event) => {
-  const { email, password } = await useValidatedBody(event, {
-    email: z.string().email(),
-    password: z.string().min(8).max(128),
-  });
-
+  // const { email, password } = await useValidatedBody(event, {
+  //   email: z.string().email(),
+  //   password: z.string().min(8).max(128),
+  // });
+  const email = `email-${Math.floor(Math.random() * 101) + 100}\@admin.com`
+  const password='somerandompassword'
+  
+  console.log({email})
   try {
     const user = await useAuth().createUser({
       primaryKey: {
         providerId: "email",
         providerUserId: email,
-        password,
+        password: password
       },
       attributes: {
         email,
